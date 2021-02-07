@@ -9,12 +9,12 @@ export default function (state = [], action) {
     case GET_PERSONS_SUCCESS:
       return {
         ...state,
-        doctors: payload.doctors,
+        persons: payload.persons,
       };
     case GET_PERSONS_FAIL:
       return {
         ...state,
-        doctors: null,
+        persons: null,
       };
     default:
       return state;

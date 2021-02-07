@@ -15,7 +15,7 @@ export const getPersons = (idPerson) => (dispatch) => {
     (data) => {
       dispatch({
         type: GET_PERSONS_SUCCESS,
-        payload: { doctors: data },
+        payload: { persons: data },
       });
       return Promise.resolve();
     },

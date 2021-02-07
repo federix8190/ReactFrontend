@@ -7,7 +7,7 @@ import { API_URL } from "../config/env.config";
 class PersonService {
   getAll() {
     return axios
-      .get(API_URL + "/persons", { headers: authHeader() })
+      .get(API_URL + "/test/persons", { headers: authHeader() })
       .then((response) => {
         return response.data;
       });
