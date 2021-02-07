@@ -1,21 +1,39 @@
 /** @format */
 
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import "../App.css";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.css";
 import "react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css";
 
-export default class Home extends Component {
+//import { getPersons } from "../actions/persons.action";
+
+class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      persons: undefined,
       content: "Este es el home page",
     };
   }
 
+  /*loadForms() {
+    const { dispatch, persons } = this.props;
+
+    dispatch(getPersons()).then(() => {
+      this.setState({
+        persons: doctors,
+      });
+    });
+  }*/
+
   render() {
+    /*if (!this.state.forms) {
+      this.loadForms();
+    }*/
+
     return (
       <div className="content">
         <div className="container">
@@ -27,3 +45,12 @@ export default class Home extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  const { persons } = state.persons;
+  return {
+    persons,
+  };
+}
+
+export default connect(mapStateToProps)(Home);

@@ -1,22 +1,22 @@
 /** @format */
 
 import {
-  GET_DOCTORS_SUCCESS,
-  GET_DOCTORS_FAIL,
+  GET_PERSONS_SUCCESS,
+  GET_PERSONS_FAIL,
   SET_MESSAGE,
-  ASSIGN_DOCTOR_SUCCESS,
+  SEND_MESSAGE_SUCCESS,
+  SEND_MESSAGE_FAIL,
 } from "./types";
 
 import service from "../services/person.service";
 
-export const getDoctors = (idPerson) => (dispatch) => {
-  return service.getDoctors(idPerson).then(
+export const getPersons = (idPerson) => (dispatch) => {
+  return service.getAll().then(
     (data) => {
       dispatch({
-        type: GET_DOCTORS_SUCCESS,
+        type: GET_PERSONS_SUCCESS,
         payload: { doctors: data },
       });
-
       return Promise.resolve();
     },
     (error) => {
@@ -28,24 +28,23 @@ export const getDoctors = (idPerson) => (dispatch) => {
         error.toString();
 
       dispatch({
-        type: GET_DOCTORS_FAIL,
+        type: GET_PERSONS_FAIL,
       });
 
       dispatch({
         type: SET_MESSAGE,
         payload: message,
       });
-
       return Promise.reject();
     }
   );
 };
 
-export const saveAssignment = (idPerson, idDoctor) => (dispatch) => {
-  return service.saveAssignment(idPerson, idDoctor).then(
+export const sendMessage = (id, idPatient, message) => (dispatch) => {
+  return service.sendMessage(id, idPatient, message).then(
     (data) => {
       dispatch({
-        type: ASSIGN_DOCTOR_SUCCESS,
+        type: SEND_MESSAGE_SUCCESS,
       });
 
       return Promise.resolve();
@@ -59,7 +58,7 @@ export const saveAssignment = (idPerson, idDoctor) => (dispatch) => {
         error.toString();
 
       dispatch({
-        type: GET_DOCTORS_FAIL,
+        type: SEND_MESSAGE_FAIL,
       });
 
       dispatch({
